@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Work Day Planner</title>
+</head>
+
+<body>
+    <header class="jumbotron">
+        <h1 class="display-3">Work Day Planner</h1>
+        <p class="lead">A simple calendar app for scheduling your work day</p>
+        <p id="currentDay" class="lead"></p>
+        <h2 class='dateTime'></h2>
+    </header>
+    <div class="container">
+        <!-- Timeblocks go here -->
+            <div class="row row-1">9AM
+                <textarea row="3" cols="80"></textarea>
+                <button type="saveBtn" value="saveBtn">save</button>
+            </div>
+            <div class="row row-2">10 AM
+                <textarea row="3" cols="80"></textarea>
+                <button type="saveBtn" value="saveBtn">save</button>
+            </div>
+            <div class="row row-3">11 AM
+                <textarea row="3" cols="80"></textarea>
+                <button type="saveBtn" value="saveBtn">save</button>
+            </div>
+            <div class="row row-4">12 PM
+                <textarea row="3" cols="80"></textarea>
+                <button type="saveBtn" value="saveBtn">save</button>
+            </div>
+            <div class="row row-5">1 PM
+                <textarea row="3" cols="80"></textarea>
+                <button type="saveBtn" value="saveBtn">save</button>
+            </div>
+            <div class="row row-6">2 PM
+                <textarea row="3" cols="80"></textarea>
+                <button type="saveBtn" value="saveBtn">save</button>
+            </div>
+            <div class="row row-7">3 PM
+                <textarea rows="3" cols="80"></textarea>
+                <button type="saveBtn" value="saveBtn">save</button>
+            </div>
+            <div class="row row-8">4 PM
+                <textarea rows="3" cols="80"></textarea>
+                <button type="saveBtn" value="saveBtn">save</button>
+            </div>
+            <div class= "row row-9">5 PM
+                <textarea row="3" cols="80"></textarea>
+                <button type="saveBtn" value="saveBtn">save</button>
+            </div>
+        </div>
+       <div class="rows">
+                <div id="tenAm"></div>
+                <div id="elevenAm"></div>
+                <div id="twelvePm"></div>
+                <div id="onePm"></div>
+                <div id="twoPm"></div>
+                <div id="threePm"></div>
+                <div id="fourPm"></div>
+                <div id="fivePm"></div>
+        </div> -->
+    
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <Script>
+    
+        var rows = document.getElementById(i);
+        currentDay.textcontent = moment().format("dddd, MMMM Do YYYY");
+        var container = document.querySelector(".container");
+        var hoursPerDay = 8;
+        var dateTime = [];
+        var timeEl = [];
+        var currentHour = parseInt(moment().startof("hour").format());
+        var button = document.querySelector(".saveBtn");
+        //<input id="tenAm" type="text" class="" name="task" placeholder="Input daily task" value="text"/>
+        // console.log(moment());
+
+        //Today
+        var dateTime = moment().format("dddd,MMMM Do YYYY");
+        $("currentDay").html(dateTime.toString()); 
+        // var x = document.getElementById("dateTime").value;
+        // document.getElementById("dateTime").innerHTML = x;
+        console.log(dateTime);
+
+        //Var saveBtn =
+        //Variables
+        var timeEl = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+        var rows = ["nineAm", "tenAm", "elevenAm", "twelvePm", "onePm", "twoPm", "threePm", "fourPm", "fivePm",];
+
+        var daySchedule = $(".inputText");
+        for (var i = 9; i < 18; i++) {
+            var getDaySchedule = localStorage.getItem(i)
+            $("#" + i + "t").text(getDaySchedule);
+        }
+        daySchedule.textcontent = getDaySchedule;
+        // console.log(timeEl[0]);
+
+        //Setting Time Variables
+        var dt = new Date();
+        var currentTime = dt.getHours();
+        console.log(currentTime);
+
+        //Color Loop
+        for (var i = 0; i < timeEl.length; i++) {
+
+            if (timeEl[i] === currentTime) {
+                $("#" + timeEl[i]).attr("class", "present");
+            }
+            else if (timeEl[i] < currentTime) {
+                $("#" + timeEl[i]).attr("class", "past");
+            }
+            else if (timeEl[i] > currentTime) {
+                $("#" + timeEl[i]).attr("class", "future");
+            }
+        }
+
+        //Local Storage
+        for (var i = 0; i < rows.length; i++) {
+            console.log(rows[i])
+            $("#" + rows[i]).on("click", function(e) {
+                daySchedule = $("#" + e.target.value + "t").val();
+                console.log(daySchedule);
+                console.log(e.target.value)
+                console.log($("#" + e.target.value))
+                console.log($("#" + e.target.value).val());
+                localStorage.setItem(e.target.value, daySchedule);
+            })
+        }
+    </Script>
+
+</div>
+</body>
+
+</html>
